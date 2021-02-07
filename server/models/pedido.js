@@ -1,0 +1,33 @@
+const mongoose = require('mongoose');
+
+let Schema = mongoose.Schema;
+let panSchema = new Schema({   
+    tipo: String,
+    peso: Number,
+    precio: Number,
+    masa: String,
+    cantidad: Number
+});
+let pedidoSchema = new Schema({
+    pedidoId: {
+        type: Number,
+        required: [true],
+        default: 1
+    },
+    nombre: {
+        type: String,
+        required: [true, 'El nombre es necesario']
+    },
+    fecha: {
+        type: String,
+        required: [true, 'La fecha es necesaria']
+    },
+    pan:[panSchema],
+    precioTotal: 
+    {
+        type: Number,
+        required: [true, 'El precio es necesario']
+    }
+});
+
+module.exports = mongoose.model('Pedido', pedidoSchema);
