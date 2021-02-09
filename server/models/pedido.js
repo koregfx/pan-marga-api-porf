@@ -2,10 +2,8 @@ const mongoose = require('mongoose');
 
 let Schema = mongoose.Schema;
 let panSchema = new Schema({   
-    tipo: String,
-    peso: Number,
+    nombre: String,
     precio: Number,
-    masa: String,
     cantidad: Number
 });
 let pedidoSchema = new Schema({
