@@ -63,36 +63,49 @@ app.post('/',(req, res)=>{
 
     let body = req.body;
     let count = 1;
-    Pedido.countDocuments({}, (err, cont)=>{
-        if(err)
-        {
-            console.log(err);
-        }
-        count = cont;
-        let pedido = new Pedido({
-            nombre: body.nombre,
-            fecha: body.fecha,
-            pedidoId: count,
-            pan: body.pan,
-            precioTotal: body.precioTotal
-        });
-    
-    
-        pedido.save((err, pedidoDB) =>{
-            if(err)
-            {
-                return res.status(400).json({
+    Pedido.find({})
+        .sort({pedidoId : -1})
+        .limit(1)
+        .exec((err,data)=>{
+            if(err){
+                res.status(400).json({
                     ok:false,
                     err
                 })
             }
-            res.json({
-                ok: true,
-                pedido: pedidoDB
+            if(data[0] == undefined)
+            {
+                count = 1;
+            }
+            else{
+                count = data[0].pedidoId + 1; 
+            }
+            
+            let pedido = new Pedido({
+                nombre: body.nombre,
+                fecha: body.fecha,
+                pedidoId: count,
+                pan: body.pan,
+                precioTotal: body.precioTotal
             });
-        });
-    })
+        
+            console.log(pedido);
+            pedido.save((error, pedidoDB) =>{
+                if(error)
+                {
+                    return res.status(400).json({
+                        ok:false,
+                        error
+                    })
+                }
+                res.json({
+                    ok: true,
+                    pedido: pedidoDB
+                });
+            });
+        })
 })
+
 
 
 module.exports = app;
