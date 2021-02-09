@@ -85,7 +85,7 @@ app.post('/',(req, res)=>{
                 nombre: body.nombre,
                 fecha: body.fecha,
                 pedidoId: count,
-                pedidos: body.productos,
+                productos: body.productos,
                 precioTotal: body.precioTotal
             });
         
