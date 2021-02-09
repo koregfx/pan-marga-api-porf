@@ -16,10 +16,29 @@ app.get('/',(req, res)=>{
             res.json({
                 ok:true,
                 pedidos
+            });
+        });
+});
+
+app.delete('/:_id',(req, res)=>{
+    const id = req.params._id;
+    console.log(id);
+    Pedido.findOneAndDelete({ _id: id })
+        .exec((err, pedidos)=>{
+            if(err)
+            {
+                return res.status(400).json({
+                    ok: false,
+                    err
+                })
+            }
+            res.json({
+                ok:true,
+                pedidos
             })
         })
+    
 })
-
 app.get('/:date',(req, res)=>{
 
     const date = req.params.date;
