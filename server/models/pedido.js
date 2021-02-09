@@ -20,7 +20,7 @@ let pedidoSchema = new Schema({
         type: String,
         required: [true, 'La fecha es necesaria']
     },
-    pan:[panSchema],
+    pedidos:[panSchema],
     precioTotal: 
     {
         type: Number,
