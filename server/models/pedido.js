@@ -1,11 +1,6 @@
 const mongoose = require('mongoose');
-
 let Schema = mongoose.Schema;
-let panSchema = new Schema({   
-    nombre: String,
-    precio: Number,
-    cantidad: Number
-});
+
 let pedidoSchema = new Schema({
     pedidoId: {
         type: Number,
@@ -20,7 +15,10 @@ let pedidoSchema = new Schema({
         type: String,
         required: [true, 'La fecha es necesaria']
     },
-    productos:[panSchema],
+    productos:[{
+        _id: {type: Schema.Types.ObjectId, ref: 'Producto'},
+        cantidad: Number
+    }],
     precioTotal: 
     {
         type: Number,

@@ -89,7 +89,6 @@ app.post('/',(req, res)=>{
                 precioTotal: body.precioTotal
             });
         
-            console.log(pedido);
             pedido.save((error, pedidoDB) =>{
                 if(error)
                 {
