@@ -17,7 +17,7 @@ app.get('/', (req,res)=>{
     res.json('hola mundo')
 })
 
-mongoose.connect(process.env.URLDB, {useNewUrlParser: true , useUnifiedTopology: true }, (err, res) => {
+mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true , useUnifiedTopology: true }, (err, res) => {
 
     if (err) throw err;
 
