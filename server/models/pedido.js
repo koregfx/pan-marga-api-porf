@@ -25,7 +25,7 @@ let pedidoSchema = new Schema({
         required: [true, 'El precio es necesario']
     },
     activo:{
-        type:boolean,
+        type: Boolean,
         default:true,
     }
 });
