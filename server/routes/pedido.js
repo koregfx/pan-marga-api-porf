@@ -4,7 +4,7 @@ const app = express();
 
 
 app.get('/',(req, res)=>{
-    Pedido.find({})
+    Pedido.find({ activo: true})
         .exec((err, pedidos)=>{
             if(err)
             {
@@ -23,7 +23,7 @@ app.get('/',(req, res)=>{
 app.delete('/:_id',(req, res)=>{
     const id = req.params._id;
     console.log(id);
-    Pedido.findOneAndDelete({ _id: id })
+    Pedido.findOneAndUpdate({ _id: id },{activo: false })
         .exec((err, pedidos)=>{
             if(err)
             {
@@ -43,7 +43,7 @@ app.get('/:date',(req, res)=>{
 
     const date = req.params.date;
     console.log(date);
-    Pedido.find({ fecha: date })
+    Pedido.findOne({ fecha: date,activo: true })
         .exec((err, pedidos)=>{
             if(err)
             {
