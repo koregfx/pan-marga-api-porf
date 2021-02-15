@@ -23,6 +23,10 @@ let pedidoSchema = new Schema({
     {
         type: Number,
         required: [true, 'El precio es necesario']
+    },
+    activo:{
+        type:boolean,
+        default:true,
     }
 });
 
