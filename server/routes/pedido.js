@@ -43,7 +43,7 @@ app.get('/:date',(req, res)=>{
 
     const date = req.params.date;
     console.log(date);
-    Pedido.findOne({ fecha: date,activo: true })
+    Pedido.find({ fecha: date, activo: true })
         .exec((err, pedidos)=>{
             if(err)
             {
