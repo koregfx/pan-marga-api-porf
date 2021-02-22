@@ -5,6 +5,7 @@ const app = express();
 
 app.get('/',(req, res)=>{
     Pedido.find({ activo: true})
+        .sort({pedidoId : -1})
         .exec((err, pedidos)=>{
             if(err)
             {
@@ -44,6 +45,7 @@ app.get('/:date',(req, res)=>{
     const date = req.params.date;
     console.log(date);
     Pedido.find({ fecha: date, activo: true })
+        .sort({pedidoId : -1})  
         .exec((err, pedidos)=>{
             if(err)
             {
