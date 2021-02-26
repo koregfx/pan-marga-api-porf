@@ -16,6 +16,7 @@ app.use(require('./routes/index'));
 app.get('/', (req,res)=>{
     res.json('hola mundo')
 })
+mongoose.set('useFindAndModify', false);
 
 mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true , useUnifiedTopology: true }, (err, res) => {
 
